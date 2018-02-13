@@ -74,4 +74,13 @@ namespace util
 		r.y = y;
 		SDL_BlitSurface(src, NULL, util::sdl_screen, &r);
 	}
+
+	bool sdl_keydown(SDL_Keycode key)
+	{
+		const Uint8* state = SDL_GetKeyboardState(NULL);
+
+		if (state[(Uint8)key]) return true;
+		return false;
+	}
+
 }

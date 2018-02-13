@@ -3,6 +3,8 @@
 #include <SDL/SDL.h>
 #include <SDL/SDL_image.h>
 
+#include <iostream>
+
 SDL_Surface* image;
 SDL_Surface* icon;
 
@@ -17,7 +19,10 @@ void on_load()
 
 void on_update()
 {
-	
+	if (util::sdl_keydown(SDLK_RIGHT))
+	{
+		std::cout << "I should move right" << std::endl;
+	}
 }
 
 void on_draw()
@@ -27,7 +32,6 @@ void on_draw()
 	util::sdl_blit(image, 200, 200);
 
 	SDL_UpdateWindowSurface(util::sdl_window);
-	SDL_Delay(100);
 }
 
 void on_cleanup()
@@ -48,6 +52,7 @@ int main(int argc, char* args[])
 		util::sdl_poll();
 		on_update();
 		on_draw();
+		SDL_Delay(50);
 	}
 
 	on_cleanup();

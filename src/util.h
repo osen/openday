@@ -15,6 +15,7 @@ namespace util
 	void sdl_poll();
 	void sdl_clearscreen(int r, int g, int b);
 	void sdl_blit(SDL_Surface* src, int x, int y);
+	bool sdl_keydown(SDL_Keycode key);
 
 	void error(std::string message);
 
