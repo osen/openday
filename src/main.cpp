@@ -1,12 +1,13 @@
 #include "util.h"
 
 #include <SDL/SDL.h>
+#include <SDL/SDL_image.h>
 
 SDL_Surface* image;
 
 void on_load()
 {
-	image = SDL_LoadBMP("resources/hello_world.bmp");
+	image = IMG_Load("resources/hello_world.bmp");
 
 	if (!image)
 	{
@@ -15,6 +16,11 @@ void on_load()
 }
 
 void on_update()
+{
+	
+}
+
+void on_draw()
 {
 	util::sdl_clearscreen(254, 222, 0);
 
@@ -39,6 +45,7 @@ int main(int argc, char* args[])
 	{
 		util::sdl_poll();
 		on_update();
+		on_draw();
 	}
 
 	on_cleanup();
