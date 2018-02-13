@@ -77,15 +77,15 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>import/vs2015/SDL2/include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>import/win32/vc14/SDL2/include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
-      <AdditionalLibraryDirectories>import/vs2015/SDL2/lib</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>import/win32/vc14/SDL2/lib</AdditionalLibraryDirectories>
       <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies);SDL2.lib;SDL2main.lib</AdditionalDependencies>
       <SubSystem>Console</SubSystem>
     </Link>
     <CustomBuildStep>
-      <Command>copy import\vs2015\SDL2\bin\SDL2.dll .</Command>
+      <Command>copy import\win32\vc14\SDL2\bin\SDL2.dll .</Command>
       <Outputs>SDL2.dll</Outputs>
     </CustomBuildStep>
   </ItemDefinitionGroup>
@@ -103,17 +103,17 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>import/vs2015/SDL2/include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>import/win32/vc14/SDL2/include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalLibraryDirectories>import/vs2015/SDL2/lib</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>import/win32/vc14/SDL2/lib</AdditionalLibraryDirectories>
       <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies);SDL2.lib;SDL2main.lib</AdditionalDependencies>
       <SubSystem>Console</SubSystem>
     </Link>
     <CustomBuildStep>
-      <Command>copy import\vs2015\SDL2\bin\SDL2.dll .</Command>
+      <Command>copy import\win32\vc14\SDL2\bin\SDL2.dll .</Command>
       <Outputs>SDL2.dll</Outputs>
     </CustomBuildStep>
   </ItemDefinitionGroup>
