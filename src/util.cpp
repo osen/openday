@@ -10,8 +10,14 @@ namespace util
 	SDL_Surface* sdl_screen;
 	bool should_exit;
 
+	void log(std::string message)
+	{
+		std::cout << "[util]" << message << std::endl;
+	}
+
 	void cleanup()
 	{
+		log("Cleaning up SDL2");
 		SDL_DestroyWindow(sdl_window);
 		SDL_Quit();
 	}
@@ -25,6 +31,8 @@ namespace util
 
 	void sdl_initialize(std::string title, int width, int height)
 	{
+		log("Initializing SDL2");
+
 		if (SDL_Init(SDL_INIT_VIDEO) < 0)
 		{
 			error("Failed to initialize SDL");
