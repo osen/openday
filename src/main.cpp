@@ -4,15 +4,15 @@
 #include <SDL/SDL_image.h>
 
 SDL_Surface* image;
+SDL_Surface* icon;
 
 void on_load()
 {
-	image = IMG_Load("resources/hello_world.bmp");
+	image = IMG_Load("resources/player.png");
+	if (!image) util::error("Failed to load image");
 
-	if (!image)
-	{
-		util::error("Failed to load image");
-	}
+	icon = IMG_Load("resources/icon.png");
+	if (!icon) util::error("Failed to load icon");
 }
 
 void on_update()
@@ -24,7 +24,7 @@ void on_draw()
 {
 	util::sdl_clearscreen(254, 222, 0);
 
-	SDL_BlitSurface(image, NULL, util::sdl_screen, NULL);
+	util::sdl_blit(image, 200, 200);
 
 	SDL_UpdateWindowSurface(util::sdl_window);
 	SDL_Delay(100);
@@ -33,13 +33,15 @@ void on_draw()
 void on_cleanup()
 {
 	SDL_FreeSurface(image);
+	SDL_FreeSurface(icon);
 }
 
 int main(int argc, char* args[])
 {
 	util::sdl_initialize("Introduction Game (C++/SDL)", 800, 600);
 
-	on_load();	
+	on_load();
+	SDL_SetWindowIcon(util::sdl_window, icon);
 
 	while (!util::should_exit)
 	{

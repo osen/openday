@@ -14,6 +14,7 @@ namespace util
 	void sdl_initialize(std::string title, int width, int height);
 	void sdl_poll();
 	void sdl_clearscreen(int r, int g, int b);
+	void sdl_blit(SDL_Surface* src, int x, int y);
 
 	void error(std::string message);
 

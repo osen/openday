@@ -66,4 +66,12 @@ namespace util
 	{
 		SDL_FillRect(sdl_screen, &sdl_screen->clip_rect, SDL_MapRGB(sdl_screen->format, r, g, b));
 	}
+
+	void sdl_blit(SDL_Surface* src, int x, int y)
+	{
+		SDL_Rect r = { 0 };
+		r.x = x;
+		r.y = y;
+		SDL_BlitSurface(src, NULL, util::sdl_screen, &r);
+	}
 }
