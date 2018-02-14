@@ -7,6 +7,7 @@
 
 SDL_Surface* image;
 SDL_Surface* icon;
+util::Spritesheet* ss;
 
 void on_load()
 {
@@ -15,6 +16,9 @@ void on_load()
 
 	icon = IMG_Load("resources/icon.png");
 	if (!icon) util::error("Failed to load icon");
+
+	ss = util::SpritesheetLoad("resources/player.png", 1, 2);
+	if (!ss) util::error("Failed to load spritesheet");
 }
 
 void on_update()
@@ -29,7 +33,8 @@ void on_draw()
 {
 	util::sdl_clearscreen(254, 222, 0);
 
-	util::sdl_blit(image, 200, 200);
+	util::sdl_blit(image, util::sdl_screen, 200, 200);
+	util::SpritesheetBlit(ss, 0, 1, util::sdl_screen, 200, 200);
 
 	SDL_UpdateWindowSurface(util::sdl_window);
 }
@@ -38,6 +43,7 @@ void on_cleanup()
 {
 	SDL_FreeSurface(image);
 	SDL_FreeSurface(icon);
+	util::SpritesheetFree(ss);
 }
 
 int main(int argc, char* args[])

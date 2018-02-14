@@ -4,6 +4,8 @@
   #include <windows.h>
 #endif
 
+#include <SDL2/SDL_image.h>
+
 #include <iostream>
 
 namespace util
@@ -79,12 +81,12 @@ namespace util
 		SDL_FillRect(sdl_screen, &sdl_screen->clip_rect, SDL_MapRGB(sdl_screen->format, r, g, b));
 	}
 
-	void sdl_blit(SDL_Surface* src, int x, int y)
+	void sdl_blit(SDL_Surface* src, SDL_Surface* dest, int x, int y)
 	{
 		SDL_Rect r = { 0 };
 		r.x = x;
 		r.y = y;
-		SDL_BlitSurface(src, NULL, util::sdl_screen, &r);
+		SDL_BlitSurface(src, NULL, dest, &r);
 	}
 
 	bool sdl_keydown(SDL_Keycode key)
@@ -95,4 +97,43 @@ namespace util
 		return false;
 	}
 
+
+	Spritesheet* SpritesheetLoad(std::string path, int columns, int rows)
+	{
+		Spritesheet* rtn = new Spritesheet();
+		rtn->surface = IMG_Load(path.c_str());
+
+		if(!rtn->surface) return NULL;
+
+		rtn->rows = rows;
+		rtn->columns = columns;
+
+		return rtn;
+	}
+
+	void SpritesheetFree(Spritesheet* ctx)
+	{
+		SDL_FreeSurface(ctx->surface);
+		delete ctx;
+	}
+
+	void SpritesheetBlit(Spritesheet* ctx, int column, int row, SDL_Surface* dest, int x, int y)
+	{
+		SDL_Rect sr = {0};
+
+		column = column % ctx->columns;
+		row = row % ctx->rows;
+
+		sr.w = ctx->surface->w / ctx->columns;
+		sr.h = ctx->surface->h / ctx->rows;
+		sr.x = sr.w * column;
+		sr.y = sr.h * row;
+
+		SDL_Rect dr = {0};
+
+		dr.x = x;
+		dr.y = y;
+
+		SDL_BlitSurface(ctx->surface, &sr, dest, &dr);
+	}
 }
