@@ -1,7 +1,7 @@
 #ifndef UTIL_H
 #define UTIL_H
 
-#include <SDL/SDL.h>
+#include <SDL2/SDL.h>
 
 #include <string>
 
@@ -10,6 +10,7 @@ namespace util
 	extern SDL_Window* sdl_window;
 	extern SDL_Surface* sdl_screen;
 	extern bool should_exit;
+	extern double delta_time;
 
 	void sdl_initialize(std::string title, int width, int height);
 	void sdl_poll();
@@ -18,7 +19,6 @@ namespace util
 	bool sdl_keydown(SDL_Keycode key);
 
 	void error(std::string message);
-
 }
 
 #endif

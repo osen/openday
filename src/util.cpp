@@ -1,6 +1,8 @@
 #include "util.h"
 
-#include <windows.h>
+#ifdef _WIN32
+  #include <windows.h>
+#endif
 
 #include <iostream>
 
@@ -9,6 +11,7 @@ namespace util
 	SDL_Window* sdl_window;
 	SDL_Surface* sdl_screen;
 	bool should_exit;
+	double delta_time;
 
 	void log(std::string message)
 	{
@@ -25,7 +28,9 @@ namespace util
 	void error(std::string message)
 	{
 		std::cout << "Error: " << message << std::endl;
+#ifdef _WIN32
 		MessageBox(0, message.c_str(), "SDL Program Error", 0);
+#endif
 		exit(1);
 	}
 
@@ -51,6 +56,13 @@ namespace util
 
 	void sdl_poll()
 	{
+		static Uint32 now = 0;
+		static Uint32 last = 0;
+
+		now = SDL_GetTicks();
+		delta_time = (now - last) / 1000.0f;
+		last = now;
+
 		SDL_Event e = { 0 };
 
 		while (SDL_PollEvent(&e) != 0)

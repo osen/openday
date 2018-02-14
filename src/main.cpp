@@ -1,7 +1,7 @@
 #include "util.h"
 
-#include <SDL/SDL.h>
-#include <SDL/SDL_image.h>
+#include <SDL2/SDL.h>
+#include <SDL2/SDL_image.h>
 
 #include <iostream>
 
@@ -52,7 +52,7 @@ int main(int argc, char* args[])
 		util::sdl_poll();
 		on_update();
 		on_draw();
-		SDL_Delay(50);
+		SDL_Delay(5);
 	}
 
 	on_cleanup();
