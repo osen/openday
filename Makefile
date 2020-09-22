@@ -1,14 +1,14 @@
-CFLAGS=-I/usr/local/include
-LFLAGS=-L/usr/local/lib -lSDL2 -lSDL2_image
+CXXFLAGS=-DSDL_MAIN_HANDLED
+LDFLAGS=-static -s -lSDL2 -limm32 -lgdi32 -liconv -lwinmm -lversion -lole32 -loleaut32
 
-SRC= \
-  src/main.cpp \
-  src/util.cpp
+all: openday
 
-BIN=openday
+openday: util.o main.o
+	c++ -o$@ $^ $(LDFLAGS)
 
-all:
-	c++ $(CFLAGS) -o$(BIN) $(SRC) $(LFLAGS)
+%.o: src/%.cpp
+	c++ -c $(CXXFLAGS) -o$@ $<
 
 clean:
-	rm -f $(BIN)
+	rm -f openday
+	rm -f *.o

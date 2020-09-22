@@ -1,7 +1,6 @@
 #include "util.h"
 
 #include <SDL2/SDL.h>
-#include <SDL2/SDL_image.h>
 
 #include <iostream>
 
@@ -10,16 +9,13 @@ SDL_Surface* icon;
 
 void on_load()
 {
-	image = IMG_Load("resources/player.png");
-	if (!image) util::error("Failed to load image");
-
-	icon = IMG_Load("resources/icon.png");
-	if (!icon) util::error("Failed to load icon");
+	image = util::load_image("resources/player.png");
+	icon = util::load_image("resources/icon.png");
 }
 
 void on_update()
 {
-	if (util::sdl_keydown(SDLK_RIGHT))
+	if (util::sdl_keydown(SDL_SCANCODE_RIGHT))
 	{
 		std::cout << "I should move right" << std::endl;
 	}
@@ -47,7 +43,7 @@ int main(int argc, char* args[])
 	on_load();
 	SDL_SetWindowIcon(util::sdl_window, icon);
 
-	while (!util::should_exit)
+	while (!util::window_closed)
 	{
 		util::sdl_poll();
 		on_update();
